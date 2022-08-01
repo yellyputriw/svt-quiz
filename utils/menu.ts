@@ -18,7 +18,7 @@ const menu = [
     category: "PG",
     title: "Going Seventeen",
     img: "/menu/ABC.png",
-    target: "/",
+    target: "/going-quiz",
   },
   {
     id: "m4",

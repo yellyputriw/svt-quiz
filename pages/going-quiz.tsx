@@ -1,18 +1,18 @@
 import type { NextPage } from "next";
 import Footer from "../components/Footer";
-import MenuList from "../components/MenuList";
+import GoingQuiz from "../components/GoingQuiz";
 
-const Home: NextPage = () => {
+const Going: NextPage = () => {
   return (
     <>
       <div className="text-center mt-4 mb-6">
         <h1 className="text-4xl font-semibold mb-1">Lets Play</h1>
-        <p>Silahkan Pilih tema kuis</p>
+        <p>Pilih Jawaban sesuai hint yaaa</p>
       </div>
-      <MenuList />
+      <GoingQuiz />
       <Footer />
     </>
   );
 };
 
-export default Home;
+export default Going;
