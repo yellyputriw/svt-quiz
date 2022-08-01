@@ -7,7 +7,7 @@ const Footer = () => {
       <p className="flex items-center">
         Made with <TbHeart className="mx-1" />{" "}
         <Link href="http://yelink.vercel.app">
-          <a className="border-b-black">yellchan</a>
+          <a className="border-b border-b-black">yellchan</a>
         </Link>
       </p>
     </div>
