@@ -1,26 +1,18 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+@layer base {
   body {
-    color: white;
-    background: black;
+    font-family: "Patrick Hand";
+    background: linear-gradient(
+      162.56deg,
+      #92a8d1 24.58%,
+      #f7cac9 72.59%,
+      #f9d7d7 99.43%
+    );
+    background-repeat: no-repeat;
+    background-size: contain;
+    min-height: 100vh;
   }
 }
