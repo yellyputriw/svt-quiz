@@ -1,57 +1,91 @@
-import React, { useState } from "react";
+import { NextPage } from "next";
+import { useEffect, useState } from "react";
 import { memberName } from "../utils/member-name";
 import { svtThree } from "../utils/svt-three";
+import { Checkbox } from "@material-tailwind/react";
+import ShowScore from "./ui/ShowScore";
 
-export interface IMember {
-  languages: string;
-  value: string;
-}
-
-const SVTthree = () => {
-  const [member, setMember] = useState<string[]>([]);
+const TestArray: NextPage = () => {
+  const [num, setNum] = useState(0);
+  const [member, setMember] = useState<{ selections: string[] }>({
+    selections: [],
+  });
   const [correct, setCorrect] = useState(false);
+  const [result, setResult] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const value = e.target.value;
-    if (e.target.checked) {
-      setMember([...member, value]);
-      console.log(member);
+  useEffect(() => {
+    setNum(Math.floor(Math.random() * svtThree.length));
+  }, []);
+
+  const answerCorrect = svtThree[num].answerChoice;
+  const handleChage = (key: string) => {
+    let sel = member.selections;
+    let find = sel.indexOf(key);
+    if (find > -1) {
+      sel.splice(find, 1);
     } else {
-      setMember(member.filter((m) => m !== value));
+      sel.push(key);
     }
+
+    setMember({ selections: sel });
   };
 
   const checkQuestion = () => {
-    if (svtThree[0].answerChoice === member) {
+    setResult(true);
+    if (answerCorrect.every((val) => member.selections.includes(val))) {
       setCorrect(true);
+      console.log(true);
     }
-    console.log(correct);
   };
 
   return (
     <div>
-      <form>
-        {memberName.map((member) => (
-          <div key={Math.random()}>
-            <input
-              type="checkbox"
-              name="SVT"
-              id={member.name}
-              value={member.id}
-              onChange={handleChange}
+      {result ? (
+        <>
+          {correct ? (
+            <ShowScore
+              image="/reaction/cool.png"
+              heading="Yeay!"
+              text="Cie tau."
             />
-            <label htmlFor={member.name}>{member.name}</label>
-          </div>
-        ))}
-      </form>
-      <p>{member}</p>
-      <button
-        className="bg-neutral-50/50 mb-3 shadow-mengShadow border-neutral-50 border-[1.5px] rounded-xl px-5 py-2"
-        onClick={checkQuestion}>
-        Next
-      </button>
+          ) : (
+            <ShowScore
+              image="/reaction/cry.png"
+              heading="Yhaa"
+              text="Jawabanmu kurang tepat."
+            />
+          )}
+        </>
+      ) : (
+        <div className="flex flex-col justify-center items-center">
+          <h2>{svtThree[num].question}</h2>
+          <form className="grid grid-cols-2 gap-2 mx-5">
+            {memberName.map(({ id, name }) => (
+              <div key={id}>
+                <label htmlFor={name}>
+                  <Checkbox
+                    color="blue"
+                    type="checkbox"
+                    name={name}
+                    id={name}
+                    value={id}
+                    onChange={() => handleChage(id.toString())}
+                    checked={member.selections.includes(name)}
+                  />
+                  {name}
+                </label>
+              </div>
+            ))}
+          </form>
+          <p>{member.selections.toString()}</p>
+          <button
+            className="bg-neutral-50/50 mb-3 shadow-mengShadow border-neutral-50 border-[1.5px] rounded-xl px-5 py-2"
+            onClick={checkQuestion}>
+            Check
+          </button>
+        </div>
+      )}
     </div>
   );
 };
-
-export default SVTthree;
+export default TestArray;

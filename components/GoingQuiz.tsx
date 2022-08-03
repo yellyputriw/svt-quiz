@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { going } from "../utils/going";
 import { useRouter } from "next/router";
+import ShowScore from "./ui/ShowScore";
 
 const GoingQuiz = () => {
   const router = useRouter();
@@ -40,33 +41,23 @@ const GoingQuiz = () => {
   return (
     <div>
       {showScore ? (
-        <div className="h-80 w-full flex flex-col items-center justify-center">
-          <Image
-            src={
-              score === going.length
-                ? "/reaction/cool.png"
-                : score >= going.length - 3
-                ? "/reaction/yeay.png"
-                : "/reaction/cry.png"
-            }
-            alt="Emoji"
-            width={100}
-            height={100}
-          />
-          <h2 className="text-4xl mt-6 mb-2">
-            {score === going.length
+        <ShowScore
+          image={
+            score === going.length
+              ? "/reaction/cool.png"
+              : score >= going.length - 3
+              ? "/reaction/yeay.png"
+              : "/reaction/cry.png"
+          }
+          heading={
+            score === going.length
               ? "Idih keren!!!"
               : score >= going.length - 2
               ? "Selamat!!!"
-              : "Yhaa ..."}
-          </h2>
-          <p className="text-xl mb-6">Kamu betul : {score}</p>
-          <button
-            className="bg-neutral-50/50 mb-3 shadow-mengShadow border-neutral-50 border-[1.5px] rounded-xl px-5 py-2"
-            onClick={() => router.push("/")}>
-            Kembali ke Menu
-          </button>
-        </div>
+              : "Yhaa ..."
+          }
+          text={`Kamu betul : ${score}`}
+        />
       ) : (
         <div>
           {seconds > 0 ? (

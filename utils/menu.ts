@@ -53,7 +53,7 @@ const menu = [
     category: "PG",
     title: "SVT 3 Members",
     img: "/menu/laptop.png",
-    target: "/",
+    target: "/three-quiz",
   },
 ];
 
