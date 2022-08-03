@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import Quiz from "../components/Quiz";
+import Quiz from "../components/example/Quiz";
 import RandomQuiz from "../components/RandomQuiz";
 
 const QuizPage: NextPage = () => {
