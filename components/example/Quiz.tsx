@@ -1,7 +1,7 @@
 // Quiz berurutan dengan 1 pertanyaan
 
 import React, { useState, useEffect } from "react";
-import { DUMMY_DATA } from "../utils/dummy-data";
+import { DUMMY_DATA } from "../../utils/dummy-data";
 
 const Quiz = () => {
   const [answer, setAnswer] = useState("");
