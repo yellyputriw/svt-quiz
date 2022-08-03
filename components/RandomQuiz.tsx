@@ -34,7 +34,7 @@ const RandomQuiz = () => {
           type="text"
           value={answer}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            e.target.value.toLowerCase();
+            setAnswer(e.target.value.toLowerCase());
           }}
         />
         <button type="submit">Check</button>
